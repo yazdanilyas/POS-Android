@@ -2,7 +2,7 @@ package com.cybereast.p003spos_android.data.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.cybereast.p003spos_android.interfaces.AdapterOnClick
+import com.cybereast.p003spos_android.data.interfaces.AdapterOnClick
 
 
 class BaseViewHolder(private val mBinding: ViewDataBinding) :

@@ -7,9 +7,21 @@
     <string name="no_internet">No internet connection</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="alert">Alert</string>
     <string name="confirmation">Confirmation</string>
     <string name="are_you_sure_you_want_to">"Are you sure "</string>
+    <string name="require_field">Require_field</string>
+    <string name="product_name">Product Name</string>
+    <string name="purchase_price">Product Purchase Price</string>
+    <string name="product_sale_price">Product Sale Price</string>
+    <string name="product_purchase_price">Purchase Price</string>
+    <string name="product_quantity">Product Quantity</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="product_description">Product Description</string>
+    <string name="register_product">Register Product</string>
+    <string name="add_product">Add Product</string>
+    <string name="no_data_found">No data found</string>
+    <string name="_new">new</string>
 
 </resources>
