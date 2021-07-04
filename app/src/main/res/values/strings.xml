@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">p003s POS-android</string>
+    <string name="app_name">POS Android</string>
     <string name="error_password">Minimum 6 characters required</string>
     <string name="error_email">Email is invalid</string>
     <string name="error_phone">Phone is invalid</string>
@@ -11,6 +11,19 @@
     <string name="alert">Alert</string>
     <string name="confirmation">Confirmation</string>
     <string name="are_you_sure_you_want_to">"Are you sure "</string>
+    <string name="login">Login</string>
+    <string name="not_yet_registered_sign_up">Don\'t have an account? Register</string>
+    <string name="invalid_email_password">Invalid email or password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="mobile_no">Mobile No</string>
+    <string name="required_field">Required field</string>
+    <string name="sign_up_success_message">Signup succesfully</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_account_login">Already have account? Login</string>
+    <string name="pos">Point Of Sale</string>
     <string name="require_field">Require_field</string>
     <string name="product_name">Product Name</string>
     <string name="purchase_price">Product Purchase Price</string>
