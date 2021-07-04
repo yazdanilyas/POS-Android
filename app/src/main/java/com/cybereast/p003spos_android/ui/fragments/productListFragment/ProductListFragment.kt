@@ -1,6 +1,7 @@
 package com.cybereast.p003spos_android.ui.fragments.productListFragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.RecyclerViewBaseFragment
+import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.data.interfaces.BaseInterface
 import com.cybereast.p003spos_android.databinding.ProductListFragmentBinding
 import com.cybereast.p003spos_android.model.ProductModel
+import com.cybereast.p003spos_android.ui.fragments.addEditProductFragment.AddEditProductFragment
+import com.cybereast.p003spos_android.utils.ActivityUtils
+import com.cybereast.p003spos_android.utils.CommonKeys
+import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class ProductListFragment : RecyclerViewBaseFragment(),
     RecyclerViewAdapter.CallBack, BaseInterface {
@@ -35,6 +41,8 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(this).get(ProductListViewModel::class.java)
+        setAdapter()
+        getProductsListFirebase()
     }
 
     override fun onPrepareAdapter(): RecyclerView.Adapter<*> {
@@ -57,37 +65,22 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     override fun onViewClicked(view: View, data: Any?) {
         mViewModel.mProductModel = data as ProductModel
         when (view.id) {
-//            R.id.btnDeleteProduct -> {
-//                mChatViewModel.mMessage.id.let {
-//                    updateMessage(
-//                        it,
-//                        RequestStatus.ACCEPT.toString()
-//                    )
-//                }
-//            }
-//            R.id.btnUpdateProduct -> {
-//                mChatViewModel.mMessage.id?.let {
-//                    updateMessage(
-//                        it,
-//                        RequestStatus.REJECT.toString()
-//                    )
-//                }
-//            }
+            R.id.btnDeleteProduct -> {
+
+            }
+            R.id.btnUpdateProduct -> {
+                val bundle = Bundle().apply {
+                    putSerializable(CommonKeys.KEY_DATA, mViewModel.mProductModel)
+                }
+                ActivityUtils.launchFragment(
+                    requireContext(),
+                    AddEditProductFragment::class.java.name, bundle
+                )
+            }
         }
     }
 
     override fun onItemClick(data: Any?, position: Int) {
-//        val message = data as ProductModel
-//        if (message.requestStatus.toString() == RequestStatus.ACCEPT.toString()) {
-//            val bundle = Bundle().apply {
-//                putSerializable(CommonKeys.KEY_DATA, mViewModel.mProductModel)
-//            }
-//            ActivityUtils.launchFragment(
-//                requireContext(),
-//                AddEditProductFragment::class.java.name, bundle
-//            )
-//        }
-
     }
 
     override fun onItemLongClick(view: View, data: Any?, position: Int) {
@@ -100,4 +93,34 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     override fun onNoDataFound() {
     }
 
+
+    private fun setAdapter() {
+        mAdapter = RecyclerViewAdapter(this, mViewModel.mProductList)
+        setUpRecyclerView(
+            mBinding.recyclerView,
+            resources.getDimensionPixelSize(R.dimen._5dp) / 2
+        )
+        mBinding.recyclerView.setHasFixedSize(true)
+    }
+
+    private fun getProductsListFirebase() {
+        mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).addSnapshotListener { snap, e ->
+            try {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+                mViewModel.mProductList.clear()
+                for (doc: QueryDocumentSnapshot in snap!!) {
+                    doc.toObject(ProductModel::class.java).let {
+                        mViewModel.mProductList.add(it)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to load  products", e)
+            } finally {
+                mAdapter.notifyDataSetChanged()
+            }
+        }
+    }
 }

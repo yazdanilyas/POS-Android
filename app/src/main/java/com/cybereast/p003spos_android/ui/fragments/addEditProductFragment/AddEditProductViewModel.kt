@@ -1,7 +1,6 @@
 package com.cybereast.p003spos_android.ui.fragments.addEditProductFragment
 
-import androidx.lifecycle.ViewModel
+import com.cybereast.p003spos_android.base.BaseViewModel
 
-class AddEditProductViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class AddEditProductViewModel : BaseViewModel() {
 }

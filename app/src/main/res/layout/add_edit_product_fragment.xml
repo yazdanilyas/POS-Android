@@ -79,4 +79,13 @@
         android:layout_marginTop="@dimen/_20dp"
         android:background="@drawable/shape_button"
         android:text="@string/add_product" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnClose"
+        style="@style/headingTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:text="@string/close" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>
