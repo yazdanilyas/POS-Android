@@ -7,11 +7,14 @@ import android.net.Uri
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.application.POSApplication
+import com.cybereast.p003spos_android.ui.activities.loginActivity.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 
 object AppUtils {
     fun showToast(context: Context, message: String) {
@@ -66,5 +69,10 @@ object AppUtils {
         return firstLetter + string.substring(1)
     }
 
+    fun logOut(activity: AppCompatActivity) {
+        FirebaseAuth.getInstance().signOut()
+        ActivityUtils.startActivity(activity, LoginActivity::class.java)
+        activity.finish()
+    }
 
 }
