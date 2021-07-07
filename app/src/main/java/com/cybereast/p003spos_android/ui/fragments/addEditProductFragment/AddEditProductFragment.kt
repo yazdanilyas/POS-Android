@@ -150,14 +150,19 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
         val mRef = mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).document(productId)
 
         val docData = hashMapOf(
+            getString(R.string.productId) to productId,
+            
             getString(R.string.productName) to mBinding.etProductName.text.toString(),
+
             getString(R.string.productPurchasePrice) to mBinding.etProductPurchasePrice.text.toString()
                 .toDouble(),
             getString(R.string.productSalePrice) to mBinding.etProductSalePrice.text.toString()
                 .toDouble(),
             getString(R.string.productQuantity) to mBinding.etProductQuantity.text.toString()
                 .toInt(),
-            getString(R.string.productDetail) to mBinding.etProductDetail.text.toString()
+            getString(R.string.productDetail) to mBinding.etProductDetail.text.toString(),
+
+            getString(R.string.userUId) to FirebaseAuth.getInstance().uid.toString()
         )
 
         mRef.set(docData).addOnSuccessListener {

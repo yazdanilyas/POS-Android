@@ -50,5 +50,7 @@
     <string name="description">Description</string>
     <string name="price">Price</string>
     <string name="name">Name</string>
+    <string name="productId">productId</string>
+    <string name="userUId">userUId</string>
 
 </resources>
