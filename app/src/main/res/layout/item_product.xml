@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5dp"
+        android:background="@color/colorGrey"
         app:cardCornerRadius="@dimen/_5dp"
         app:cardElevation="@dimen/_4dp"
         app:cardUseCompatPadding="true">
@@ -26,7 +27,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/_10dp">
+            android:paddingHorizontal="@dimen/_15dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvProductName"
@@ -34,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10dp"
-                android:text="@string/product_name"
+                android:text="@string/name"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10dp"
-                android:text="@string/product_price"
+                android:text="@string/price"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
@@ -68,28 +70,60 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10dp"
                 android:text="@{obj.productSalePrice.toString()}"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvProductNameValue"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+
+            <View
+                android:id="@+id/spacer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="@color/colorGrey"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductPriceValue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvProductDescription"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10dp"
+                android:text="@string/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spacer" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvProductDescriptionValue"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10dp"
+                android:text="@{obj.productDetail}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvProductDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductDescription" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnDeleteProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_delete"
+                android:onClick="@{(view)-> click.onViewClick(view,obj)}"
+                android:paddingHorizontal="@dimen/_10dp"
+                android:paddingVertical="@dimen/_5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/spacer" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnUpdateProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10dp"
                 android:background="@drawable/ic_edit"
+                android:onClick="@{(view)-> click.onViewClick(view,obj)}"
                 android:paddingHorizontal="@dimen/_10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnDeleteProduct"
+                android:paddingVertical="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/spacer"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

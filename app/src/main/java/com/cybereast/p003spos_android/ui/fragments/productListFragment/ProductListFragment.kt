@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.cybereast.p003spos_android.R
+import com.cybereast.p003spos_android.base.BaseInterface
+import com.cybereast.p003spos_android.base.BaseValidationFragment
 import com.cybereast.p003spos_android.base.RecyclerViewBaseFragment
 import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
-import com.cybereast.p003spos_android.data.interfaces.BaseInterface
 import com.cybereast.p003spos_android.databinding.ProductListFragmentBinding
 import com.cybereast.p003spos_android.model.ProductModel
 import com.cybereast.p003spos_android.ui.fragments.addEditProductFragment.AddEditProductFragment
@@ -54,19 +55,13 @@ class ProductListFragment : RecyclerViewBaseFragment(),
         }
     }
 
-    override fun showProgressBar() {
-        mBinding.progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideProgressBar() {
-        mBinding.progressBar.visibility = View.GONE
-    }
-
     override fun onViewClicked(view: View, data: Any?) {
         mViewModel.mProductModel = data as ProductModel
         when (view.id) {
             R.id.btnDeleteProduct -> {
-
+                mViewModel.mProductModel?.let { productModel ->
+                    deleteProduct(productModel)
+                }
             }
             R.id.btnUpdateProduct -> {
                 val bundle = Bundle().apply {
@@ -93,6 +88,13 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     override fun onNoDataFound() {
     }
 
+    override fun onProgress() {
+        mBinding.progressBar.visibility = View.VISIBLE
+    }
+
+    override fun onResponse() {
+        mBinding.progressBar.visibility = View.GONE
+    }
 
     private fun setAdapter() {
         mAdapter = RecyclerViewAdapter(this, mViewModel.mProductList)
@@ -122,5 +124,19 @@ class ProductListFragment : RecyclerViewBaseFragment(),
                 mAdapter.notifyDataSetChanged()
             }
         }
+    }
+
+    private fun deleteProduct(model: ProductModel) {
+        model.productId?.let {
+            val mRef = mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).document(it)
+            mRef.delete().addOnSuccessListener {
+                Log.d(BaseValidationFragment.TAG, getString(R.string.doc_successfully_written))
+                onResponse()
+            }.addOnFailureListener { e ->
+                Log.w(BaseValidationFragment.TAG, getString(R.string.error_writing_doc), e)
+                onResponse()
+            }
+        }
+
     }
 }

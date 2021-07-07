@@ -15,7 +15,9 @@ class ProductModel(
     @SerializedName("productQuantity")
     var productQuantity: Int? = 0,
     @SerializedName("productDetail")
-    var productDetail: String? = ""
+    var productDetail: String? = "",
+    @SerializedName("userUId")
+    var userUId: String? = ""
 ) : Serializable {
     override fun toString(): String {
         return "ProductModel(productId=$productId, productName=$productName, productPurchasePrice=$productPurchasePrice, productSalePrice=$productSalePrice, productQuantity=$productQuantity)"

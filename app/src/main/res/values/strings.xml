@@ -42,5 +42,13 @@
     <string name="open_product_screen">open Product Screen</string>
     <string name="open_product_list_screen">Open Product List Screen</string>
     <string name="close">Close</string>
+    <string name="productName">productName</string>
+    <string name="productPurchasePrice">productPurchasePrice</string>
+    <string name="productSalePrice">productSalePrice</string>
+    <string name="productQuantity">productQuantity</string>
+    <string name="productDetail">productDetail</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="name">Name</string>
 
 </resources>
