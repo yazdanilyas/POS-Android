@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.cybereast.p003spos_android.utils.CommonKeys.KEY_FRAGMENT
+import com.cybereast.p003spos_android.wrapper.FrameActivity
 
 
 object ActivityUtils {

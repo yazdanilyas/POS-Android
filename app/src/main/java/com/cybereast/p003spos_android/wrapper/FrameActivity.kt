@@ -1,4 +1,4 @@
-package com.cybereast.p003spos_android.utils
+package com.cybereast.p003spos_android.wrapper
 
 import android.content.Intent
 import android.os.Bundle

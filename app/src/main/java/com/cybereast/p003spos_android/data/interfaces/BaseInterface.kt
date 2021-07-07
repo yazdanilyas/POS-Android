@@ -1,4 +1,4 @@
-package com.cybereast.p003spos_android.interfaces
+package com.cybereast.p003spos_android.data.interfaces
 
 interface BaseInterface {
     fun showProgressBar()

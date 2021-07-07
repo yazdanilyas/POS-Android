@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">p003s POS-android</string>
+    <string name="app_name">POS Android</string>
     <string name="error_password">Minimum 6 characters required</string>
     <string name="error_email">Email is invalid</string>
     <string name="error_phone">Phone is invalid</string>
@@ -7,9 +7,48 @@
     <string name="no_internet">No internet connection</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="alert">Alert</string>
     <string name="confirmation">Confirmation</string>
     <string name="are_you_sure_you_want_to">"Are you sure "</string>
+    <string name="login">Login</string>
+    <string name="not_yet_registered_sign_up">Don\'t have an account? Register</string>
+    <string name="invalid_email_password">Invalid email or password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="mobile_no">Mobile No</string>
+    <string name="required_field">Required field</string>
+    <string name="sign_up_success_message">Signup successfully</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_account_login">Already have account? Login</string>
+    <string name="pos">Point Of Sale</string>
+    <string name="require_field">Require_field</string>
+    <string name="product_name">Product Name</string>
+    <string name="purchase_price">Product Purchase Price</string>
+    <string name="product_sale_price">Product Sale Price</string>
+    <string name="product_purchase_price">Purchase Price</string>
+    <string name="product_quantity">Product Quantity</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="product_description">Product Description</string>
+    <string name="register_product">Register Product</string>
+    <string name="add_product">Add Product</string>
+    <string name="no_data_found">No data found</string>
+    <string name="_new">new</string>
+    <string name="doc_successfully_written">Doc successfully written</string>
+    <string name="error_writing_doc">Error writing doc</string>
+    <string name="product_price">Product Price</string>
+    <string name="open_product_screen">open Product Screen</string>
+    <string name="open_product_list_screen">Open Product List Screen</string>
+    <string name="close">Close</string>
+    <string name="productName">productName</string>
+    <string name="productPurchasePrice">productPurchasePrice</string>
+    <string name="productSalePrice">productSalePrice</string>
+    <string name="productQuantity">productQuantity</string>
+    <string name="productDetail">productDetail</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="name">Name</string>
 
 </resources>

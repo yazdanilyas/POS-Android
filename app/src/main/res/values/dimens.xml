@@ -90,4 +90,5 @@
     <dimen name="_120dp">120dp</dimen>
     <dimen name="_250dp">250dp</dimen>
     <dimen name="_300dp">300dp</dimen>
+    <dimen name="_30sp">30sp</dimen>
 </resources>
