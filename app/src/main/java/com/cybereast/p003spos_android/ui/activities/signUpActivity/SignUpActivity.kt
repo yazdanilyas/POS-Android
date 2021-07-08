@@ -11,7 +11,7 @@ import com.cybereast.p003spos_android.constants.Constants.COLLECTION_USERS
 import com.cybereast.p003spos_android.databinding.ActivitySignUpBinding
 import com.cybereast.p003spos_android.interfaces.BaseInterface
 import com.cybereast.p003spos_android.models.User
-import com.cybereast.p003spos_android.ui.activities.MainActivity
+import com.cybereast.p003spos_android.ui.activities.dashBoardActivity.DashboardActivity
 import com.cybereast.p003spos_android.ui.activities.loginActivity.LoginActivity
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.AppUtils.showToast
@@ -67,7 +67,7 @@ class SignUpActivity : BaseValidationActivity(), BaseInterface {
                             mFireStoreDbRef.collection(COLLECTION_USERS).document(uId)
                         mDoctorDocumentRef.set(user).addOnSuccessListener {
                             hideProgressBar()
-                            ActivityUtils.startActivity(this, MainActivity::class.java)
+                            ActivityUtils.startActivity(this, DashboardActivity::class.java)
                             this.finish()
                             showToast(
                                 applicationContext,

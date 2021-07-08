@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.P003sPOSandroid">
         <activity
+            android:name=".ui.activities.dashBoardActivity.DashboardActivity"
+            android:label="@string/title_activity_dashboard" />
+        <activity
             android:name=".ui.activities.splashActivity.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -25,6 +28,7 @@
         <activity
             android:name=".ui.activities.signUpActivity.SignUpActivity"
             android:label="@string/sign_up" />
+        <activity android:name=".wrapper.FrameActivity" />
     </application>
 
 </manifest>
