@@ -8,7 +8,7 @@ import android.widget.EditText
 import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseValidationActivity
 import com.cybereast.p003spos_android.databinding.ActivityLoginBinding
-import com.cybereast.p003spos_android.ui.activities.MainActivity
+import com.cybereast.p003spos_android.ui.activities.dashBoardActivity.DashboardActivity
 import com.cybereast.p003spos_android.ui.activities.signUpActivity.SignUpActivity
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.AppUtils
@@ -44,7 +44,7 @@ class LoginActivity : BaseValidationActivity() {
         ).addOnCompleteListener {
             if (it.isSuccessful) {
                 AppUtils.showHideProgressBar(mBinding.progressBar, View.GONE)
-                ActivityUtils.startActivity(this, MainActivity::class.java)
+                ActivityUtils.startActivity(this, DashboardActivity::class.java)
                 finish()
             } else {
                 AppUtils.showHideProgressBar(mBinding.progressBar, View.GONE)
