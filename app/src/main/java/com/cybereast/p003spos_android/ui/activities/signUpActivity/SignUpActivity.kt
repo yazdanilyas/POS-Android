@@ -8,8 +8,8 @@ import android.widget.EditText
 import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseValidationActivity
 import com.cybereast.p003spos_android.constants.Constants.COLLECTION_USERS
+import com.cybereast.p003spos_android.data.interfaces.BaseInterface
 import com.cybereast.p003spos_android.databinding.ActivitySignUpBinding
-import com.cybereast.p003spos_android.interfaces.BaseInterface
 import com.cybereast.p003spos_android.models.User
 import com.cybereast.p003spos_android.ui.activities.dashBoardActivity.DashboardActivity
 import com.cybereast.p003spos_android.ui.activities.loginActivity.LoginActivity

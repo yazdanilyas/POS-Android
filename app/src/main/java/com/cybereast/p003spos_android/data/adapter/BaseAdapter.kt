@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.cybereast.p003spos_android.interfaces.AdapterOnClick
+import com.cybereast.p003spos_android.data.interfaces.AdapterOnClick
 
 abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>(), AdapterOnClick {
 

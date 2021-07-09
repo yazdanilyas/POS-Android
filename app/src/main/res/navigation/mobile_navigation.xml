@@ -15,7 +15,7 @@
         android:id="@+id/navigation_purchases"
         android:name="com.cybereast.p003spos_android.ui.fragments.purchasesFragment.PurchaseManagementFragment"
         android:label="@string/title_purchases"
-        tools:layout="@layout/fragment_stock_managment" />
+        tools:layout="@layout/fragment_purchases_management" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
