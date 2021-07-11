@@ -42,12 +42,6 @@
     <string name="open_product_screen">open Product Screen</string>
     <string name="open_product_list_screen">Open Product List Screen</string>
     <string name="close">Close</string>
-    <string name="productName">productName</string>
-    <string name="productPurchasePrice">productPurchasePrice</string>
-    <string name="productSalePrice">productSalePrice</string>
-    <string name="productQuantity">productQuantity</string>
-    <string name="productDetail">productDetail</string>
-    <string name="description">Description</string>
     <string name="price">Price</string>
     <string name="name">Name</string>
     <string name="title_activity_dashboard">MainActivity</string>
@@ -64,5 +58,10 @@
     <string name="share_app">Share App</string>
     <string name="under_development_screen">Under development Screen</string>
     <string name="product_list">Product List</string>
+    <string name="sale">Sale</string>
+    <string name="balance">Balance</string>
+    <string name="purchase">Purchase</string>
+    <string name="description">Description</string>
+
 
 </resources>

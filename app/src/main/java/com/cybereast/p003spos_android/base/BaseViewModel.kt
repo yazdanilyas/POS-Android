@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 abstract class BaseViewModel : ViewModel() {
 //    val mDataManager = DataManager
 
-//
 //    fun setServerName(textView: TextView) {
 //        if (!BuildConfig.FLAVOR.equals(Constants.PRODUCTION)) {
 //            textView.visibility = View.VISIBLE

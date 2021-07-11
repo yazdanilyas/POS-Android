@@ -11,9 +11,16 @@ import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseInterface
 import com.cybereast.p003spos_android.base.BaseValidationFragment
 import com.cybereast.p003spos_android.constants.Constants
+import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_DETAIL
+import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_ID
+import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_NAME
+import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_PURCHASE_PRICE
+import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_QUANTITY
+import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_SALE_PRICE
+import com.cybereast.p003spos_android.constants.Constants.NODE_USER_ID
 import com.cybereast.p003spos_android.data.enums.DataMode
 import com.cybereast.p003spos_android.databinding.AddEditProductFragmentBinding
-import com.cybereast.p003spos_android.model.ProductModel
+import com.cybereast.p003spos_android.models.ProductModel
 import com.cybereast.p003spos_android.utils.CommonKeys.KEY_DATA
 import com.google.firebase.auth.FirebaseAuth
 
@@ -147,17 +154,24 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
 
     private fun updateProduct() {
         val productId = mViewModel.productModel?.productId.toString()
+        val userUId = mViewModel.productModel?.userUId.toString()
+
+        val productName = mBinding.etProductName.text.toString()
+        val productPurchasePrice = mBinding.etProductPurchasePrice.text.toString().toDouble()
+        val productSalePrice = mBinding.etProductSalePrice.text.toString().toDouble()
+        val productQuantity = mBinding.etProductQuantity.text.toString().toInt()
+        val productDetail = mBinding.etProductDetail.text.toString()
+
         val mRef = mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).document(productId)
 
         val docData = hashMapOf(
-            getString(R.string.productName) to mBinding.etProductName.text.toString(),
-            getString(R.string.productPurchasePrice) to mBinding.etProductPurchasePrice.text.toString()
-                .toDouble(),
-            getString(R.string.productSalePrice) to mBinding.etProductSalePrice.text.toString()
-                .toDouble(),
-            getString(R.string.productQuantity) to mBinding.etProductQuantity.text.toString()
-                .toInt(),
-            getString(R.string.productDetail) to mBinding.etProductDetail.text.toString()
+            NODE_PRODUCT_ID to productId,
+            NODE_PRODUCT_NAME to productName,
+            NODE_PRODUCT_PURCHASE_PRICE to productPurchasePrice,
+            NODE_PRODUCT_SALE_PRICE to productSalePrice,
+            NODE_PRODUCT_QUANTITY to productQuantity,
+            NODE_PRODUCT_DETAIL to productDetail,
+            NODE_USER_ID to userUId
         )
 
         mRef.set(docData).addOnSuccessListener {

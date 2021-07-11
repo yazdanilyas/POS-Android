@@ -9,4 +9,13 @@ object Constants {
 
     const val NODE_PRODUCTS = "Products"
 
+    const val NODE_PRODUCT_ID = "productId"
+    const val NODE_PRODUCT_NAME = "productName"
+    const val NODE_PRODUCT_PURCHASE_PRICE = "productPurchasePrice"
+    const val NODE_PRODUCT_SALE_PRICE = "productSalePrice"
+    const val NODE_PRODUCT_QUANTITY = "productQuantity"
+    const val NODE_PRODUCT_DETAIL = "productDetail"
+    const val NODE_USER_ID = "userUId"
+
+
 }
