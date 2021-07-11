@@ -130,9 +130,9 @@ abstract class BaseActivity : AppCompatActivity() {
                 R.color.colorRed
             )
         )
-//        if (view.id == R.id.bottomNavigation) {
-//            snackBar.anchorView = view
-//        }
+        if (view.id == R.id.bottomBar) {
+            snackBar.anchorView = view
+        }
 
         connectionLiveData.observe(this, { isConnected ->
             isConnected?.let {
