@@ -50,6 +50,13 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
         mBinding.addProductButton.setOnClickListener {
             openChoseProductDialog()
         }
+        mBinding.invoiceBtn.setOnClickListener {
+            setInvoice()
+        }
+    }
+
+    private fun setInvoice() {
+
     }
 
     private fun openChoseProductDialog() {
@@ -58,12 +65,10 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
             requireActivity().supportFragmentManager,
             choseProductDialog.tag
         )
-        mBinding.addProductButton.isEnabled = false
     }
 
     private fun closeChoseProductDialog() {
         choseProductDialog.dismiss()
-        mBinding.addProductButton.isEnabled = true
     }
 
     override fun onPrepareAdapter(): RecyclerView.Adapter<*> {
@@ -81,14 +86,21 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
             R.id.tvDecreaseQuantity -> {
                 val selected = productModel.selectedQuantity ?: 0
                 val total = productModel.productQuantity ?: 0
-                if (selected < total)
-                    productModel.selectedQuantity = selected.plus(1)
-
+                if (selected > 0)
+                    productModel.selectedQuantity = selected.minus(1)
             }
             R.id.tvIncreaseQuantityImg -> {
+                val selected = productModel.selectedQuantity ?: 0
+                val total = productModel.productQuantity ?: 0
+                if (selected < total)
+                    productModel.selectedQuantity = selected.plus(1)
+            }
 
+            R.id.btnRemoveProduct -> {
+                mViewModel.mProductList.remove(productModel)
             }
         }
+        mAdapter.notifyDataSetChanged()
     }
 
     override fun onItemClick(data: Any?, position: Int) {

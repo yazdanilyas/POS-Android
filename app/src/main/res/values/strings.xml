@@ -67,11 +67,16 @@
     <string name="sale">Sale</string>
     <string name="invoice">Invoice</string>
     <string name="transactionType">transactionType</string>
-    <string name="balance">Balance</string>
-    <string name="sale">Sale</string>
-    <string name="balance">Balance</string>
     <string name="purchase">Purchase</string>
     <string name="description">Description</string>
+    <string name="balance">Balance</string>
+    <string name="generate_bill">Generate Bill</string>
+    <string name="generate_invoice">Generate Invoice</string>
+    <string name="confirm_invoice">Confirm Invoice</string>
+    <string name="billing_amount">Billing Amount</string>
+    <string name="total_rs">Total Rs.</string>
+    <string name="_0">0</string>
+    <string name="confirm">Confirm</string>
 
 
 </resources>

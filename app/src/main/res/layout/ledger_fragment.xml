@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="?attr/actionBarSize"
     tools:context=".ui.fragments.ledgerFragment.LedgerFragment">
-
     <include
         android:id="@+id/layoutHeader"
         layout="@layout/layout_ledger_header"

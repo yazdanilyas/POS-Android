@@ -9,9 +9,9 @@ class ProductModel(
     @SerializedName("productName")
     var productName: String? = null,
     @SerializedName("productPurchasePrice")
-    var productPurchasePrice: Double? = 0.0,
+    var productPurchasePrice: Int? = 0,
     @SerializedName("productSalePrice")
-    var productSalePrice: Double? = 0.0,
+    var productSalePrice: Int? = 0,
     @SerializedName("productQuantity")
     var productQuantity: Int? = 0,
     @SerializedName("productDetail")

@@ -136,8 +136,8 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
         val productModel = ProductModel(
             mRef.id,
             mBinding.etProductName.text.toString().trim(),
-            mBinding.etProductPurchasePrice.text.toString().toDouble(),
-            mBinding.etProductSalePrice.text.toString().toDouble(),
+            mBinding.etProductPurchasePrice.text.toString().toInt(),
+            mBinding.etProductSalePrice.text.toString().toInt(),
             mBinding.etProductQuantity.text.toString().toInt(),
             mBinding.etProductDetail.text.toString().trim(),
             FirebaseAuth.getInstance().uid

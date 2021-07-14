@@ -21,4 +21,16 @@ object BindingAdapter {
         if (selected > 0)
             textView.text = selected.minus(1).toString()
     }
+
+    @JvmStatic
+    @BindingAdapter("calculateSelectedPrice")
+    fun calculateSelectedPrice(textView: TextView, productModel: ProductModel?) {
+        val items = productModel?.selectedQuantity ?: 0
+        val price = productModel?.productSalePrice ?: 0
+        if (items > 0) {
+            textView.text = "Rs " + (items * price).toString() + "/-"
+        } else
+            textView.text = ""
+    }
+
 }
