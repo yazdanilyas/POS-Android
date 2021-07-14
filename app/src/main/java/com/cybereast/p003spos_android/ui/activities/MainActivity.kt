@@ -34,6 +34,12 @@ class MainActivity : AppCompatActivity() {
                 ProductListFragment::class.java.name
             )
         }
+        mBinding.btnLedger.setOnClickListener {
+            ActivityUtils.launchFragment(
+                this,
+                ProductListFragment::class.java.name
+            )
+        }
 
     }
 

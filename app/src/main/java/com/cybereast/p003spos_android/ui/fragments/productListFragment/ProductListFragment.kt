@@ -82,7 +82,7 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     }
 
     override fun inflateLayoutFromId(position: Int, data: Any?): Int {
-        return R.layout.item_product
+        return R.layout.item_ledger
     }
 
     override fun onNoDataFound() {

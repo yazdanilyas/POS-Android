@@ -58,6 +58,16 @@
     <string name="share_app">Share App</string>
     <string name="under_development_screen">Under development Screen</string>
     <string name="product_list">Product List</string>
+    <string name="ledger">Ledger</string>
+    <string name="date">Date</string>
+    <string name="transaction">Transaction</string>
+    <string name="dr">Dr</string>
+    <string name="cr">Cr</string>
+    <string name="date_">02/07/2021</string>
+    <string name="sale">Sale</string>
+    <string name="invoice">Invoice</string>
+    <string name="transactionType">transactionType</string>
+    <string name="balance">Balance</string>
     <string name="sale">Sale</string>
     <string name="balance">Balance</string>
     <string name="purchase">Purchase</string>
