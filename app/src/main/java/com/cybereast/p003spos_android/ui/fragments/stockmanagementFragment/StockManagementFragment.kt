@@ -40,18 +40,13 @@ class StockManagementFragment : Fragment() {
                 AddEditProductFragment::class.java.name
             )
         }
-        mBinding.editProductCv.setOnClickListener {
+        mBinding.updateStockCv.setOnClickListener {
             ActivityUtils.launchFragment(
                 requireContext(),
                 UnderDevelopmentFragment::class.java.name
             )
         }
-        mBinding.editProductCv.setOnClickListener {
-            ActivityUtils.launchFragment(
-                requireContext(),
-                UnderDevelopmentFragment::class.java.name
-            )
-        }
+
         mBinding.productListCv.setOnClickListener {
             ActivityUtils.launchFragment(
                 requireContext(),

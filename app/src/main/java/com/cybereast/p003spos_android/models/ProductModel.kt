@@ -1,4 +1,4 @@
-package com.cybereast.p003spos_android.model
+package com.cybereast.p003spos_android.models
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

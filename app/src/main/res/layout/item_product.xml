@@ -12,7 +12,7 @@
 
         <variable
             name="obj"
-            type="com.cybereast.p003spos_android.model.ProductModel" />
+            type="com.cybereast.p003spos_android.models.ProductModel" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -14,7 +14,7 @@ import com.cybereast.p003spos_android.base.RecyclerViewBaseFragment
 import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.databinding.ProductListFragmentBinding
-import com.cybereast.p003spos_android.model.ProductModel
+import com.cybereast.p003spos_android.models.ProductModel
 import com.cybereast.p003spos_android.ui.fragments.addEditProductFragment.AddEditProductFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.CommonKeys

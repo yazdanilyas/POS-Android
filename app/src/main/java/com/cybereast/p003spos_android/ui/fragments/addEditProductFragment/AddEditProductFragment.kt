@@ -13,7 +13,7 @@ import com.cybereast.p003spos_android.base.BaseValidationFragment
 import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.enums.DataMode
 import com.cybereast.p003spos_android.databinding.AddEditProductFragmentBinding
-import com.cybereast.p003spos_android.model.ProductModel
+import com.cybereast.p003spos_android.models.ProductModel
 import com.cybereast.p003spos_android.utils.CommonKeys.KEY_DATA
 import com.google.firebase.auth.FirebaseAuth
 
@@ -69,6 +69,7 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
                 addProduct()
             }
             DataMode.UPDATE.toString() -> {
+                mBinding.btnAddEditProduct.text = getString(R.string.update_product)
                 updateProduct()
             }
         }
