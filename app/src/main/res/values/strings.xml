@@ -30,10 +30,12 @@
     <string name="product_sale_price">Product Sale Price</string>
     <string name="product_purchase_price">Purchase Price</string>
     <string name="product_quantity">Product Quantity</string>
+    <string name="quantity">Quantity</string>
     <string name="product_detail">Product Detail</string>
     <string name="product_description">Product Description</string>
     <string name="register_product">Register Product</string>
     <string name="add_product">Add Product</string>
+    <string name="update_product">Update Product</string>
     <string name="no_data_found">No data found</string>
     <string name="_new">new</string>
     <string name="doc_successfully_written">Doc successfully written</string>
@@ -74,9 +76,13 @@
     <string name="generate_invoice">Generate Invoice</string>
     <string name="confirm_invoice">Confirm Invoice</string>
     <string name="billing_amount">Billing Amount</string>
-    <string name="total_rs">Total Rs.</string>
+    <string name="bill">Bill</string>
+    <string name="total_rs">Rs.</string>
     <string name="_0">0</string>
     <string name="confirm">Confirm</string>
+    <string name="your_cart_is_empty">Your cart is empty.</string>
+    <string name="noInternetTitle">No internet connection</string>
+    <string name="are_you_sure_you_want_to_complete_this_process">are you sure you want to complete this process?</string>
 
 
 </resources>

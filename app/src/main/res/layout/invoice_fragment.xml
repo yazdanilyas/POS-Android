@@ -18,67 +18,65 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_invoice" />
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_marginStart="@dimen/_5dp"
+        android:elevation="@dimen/_5dp"
+        app:cardBackgroundColor="@color/color_gray_23A6A4A4"
+        app:cardCornerRadius="@dimen/_3dp"
+        app:cardElevation="@dimen/_3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/invoiceBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/invoiceBtn"
+        app:layout_constraintTop_toTopOf="@+id/invoiceBtn">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBill"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10dp"
+                android:text="@string/total_rs"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBillValue"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10dp"
+                android:text="@string/_0"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvBill"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/invoiceBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10dp"
-        android:layout_marginTop="@dimen/_10dp"
+        android:layout_margin="@dimen/_15dp"
         android:background="@drawable/shape_button"
-        android:paddingHorizontal="@dimen/_30dp"
+        android:paddingHorizontal="@dimen/_50dp"
         android:text="@string/confirm"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvBalanceValue"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10dp"
-        android:text="Rs. 35000/-"
-        android:textColor="@color/colorGreen"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/centerLine"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvBalance"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10dp"
-        android:text="@string/billing_amount"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/invoiceBtn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvBill"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10dp"
-        android:text="@string/total_rs"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/invoiceBtn" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvBillValue"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10dp"
-        android:text="@string/_0"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvBill" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addProductButton"

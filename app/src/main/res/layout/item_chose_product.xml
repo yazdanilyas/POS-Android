@@ -24,58 +24,86 @@
         app:cardElevation="@dimen/_4dp"
         app:cardUseCompatPadding="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/_20dp">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvProductName"
-                style="@style/textStyle"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10dp"
-                android:layout_marginVertical="@dimen/_10dp"
-                android:text="@string/name"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:paddingHorizontal="@dimen/_10dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvProductNameValue"
-                style="@style/textStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_20dp"
-                android:layout_marginVertical="@dimen/_10dp"
-                android:text="@{obj.productName}"
-                app:layout_constraintStart_toEndOf="@+id/tvProductName"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductName"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProductName"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:text="@string/name"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvProductPrice"
-                style="@style/textStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10dp"
-                android:layout_marginVertical="@dimen/_10dp"
-                android:text="@string/price"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProductNameValue"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20dp"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:text="@{obj.productName}"
+                    app:layout_constraintStart_toEndOf="@+id/tvProductName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProductName"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvProductPriceValue"
-                style="@style/textStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10dp"
-                android:text="@{obj.productSalePrice.toString()}"
-                app:layout_constraintStart_toStartOf="@+id/tvProductNameValue"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProductPrice"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:text="@string/price"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProductPriceValue"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:text="@{obj.productSalePrice.toString()}"
+                    app:layout_constraintStart_toStartOf="@+id/tvProductNameValue"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProductQuantity"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:text="@string/quantity"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvProductPriceValue" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProductQuantityValue"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20dp"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:text="@{obj.productQuantity.toString()}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvProductQuantity" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </HorizontalScrollView>
     </androidx.cardview.widget.CardView>
 </layout>

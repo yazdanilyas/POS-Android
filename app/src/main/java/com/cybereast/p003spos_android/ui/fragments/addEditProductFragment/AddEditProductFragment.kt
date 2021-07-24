@@ -106,6 +106,7 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
             mBinding.etProductSalePrice.setText(salePrice)
             mBinding.etProductQuantity.setText(quantity)
             mBinding.etProductDetail.setText(detail)
+            mBinding.btnAddEditProduct.text = resources.getString(R.string.update_product)
         }
     }
 
@@ -178,6 +179,7 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
             Log.d(TAG, getString(R.string.doc_successfully_written))
             resetFields()
             onResponse()
+            requireActivity().finish()
         }.addOnFailureListener { e ->
             Log.w(TAG, getString(R.string.error_writing_doc), e)
             onResponse()

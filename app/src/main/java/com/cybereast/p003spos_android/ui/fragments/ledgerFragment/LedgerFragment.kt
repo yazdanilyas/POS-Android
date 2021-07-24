@@ -1,6 +1,7 @@
 package com.cybereast.p003spos_android.ui.fragments.ledgerFragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseInterface
 import com.cybereast.p003spos_android.base.RecyclerViewBaseFragment
+import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.databinding.LedgerFragmentBinding
+import com.cybereast.p003spos_android.models.LedgerModel
+import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class LedgerFragment : RecyclerViewBaseFragment(),
     RecyclerViewAdapter.CallBack, BaseInterface {
@@ -35,6 +39,8 @@ class LedgerFragment : RecyclerViewBaseFragment(),
         super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(this).get(LedgerViewModel::class.java)
         setAdapter()
+        readLedgerDataFromFirebase()
+
     }
 
     override fun onPrepareAdapter(): RecyclerView.Adapter<*> {
@@ -56,7 +62,7 @@ class LedgerFragment : RecyclerViewBaseFragment(),
     }
 
     override fun inflateLayoutFromId(position: Int, data: Any?): Int {
-        return R.layout.item_product
+        return R.layout.item_ledger
     }
 
     override fun onNoDataFound() {
@@ -73,10 +79,50 @@ class LedgerFragment : RecyclerViewBaseFragment(),
     private fun setAdapter() {
         mAdapter = RecyclerViewAdapter(this, mViewModel.mLedgerList)
         setUpRecyclerView(
-            mBinding.recyclerView,
+            mBinding.ledgerRecyclerView,
             resources.getDimensionPixelSize(R.dimen._5dp) / 2
         )
-        mBinding.recyclerView.setHasFixedSize(true)
+        mBinding.ledgerRecyclerView.setHasFixedSize(true)
+    }
+
+    private fun readLedgerDataFromFirebase() {
+        mFireStoreDbRef.collection(Constants.NODE_LEDGER).orderBy(Constants.NODE_DATE)
+            .addSnapshotListener { snap, e ->
+                try {
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed ledger data.", e)
+                        return@addSnapshotListener
+                    }
+                    mViewModel.mLedgerList.clear()
+                    for (doc: QueryDocumentSnapshot in snap!!) {
+                        doc.toObject(LedgerModel::class.java).let {
+                            mViewModel.mLedgerList.add(it)
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to load ledger data", e)
+                } finally {
+                    mAdapter.notifyDataSetChanged()
+                    mBinding.ledgerRecyclerView.scrollToPosition(mViewModel.mLedgerList.size - 1)
+                    calculateBill()
+                }
+            }
+    }
+
+    private fun calculateBill() {
+        var totalCr = 0
+        var totalDr = 0
+        var balance = 0
+        for (i in 0 until mViewModel.mLedgerList.size) {
+            val model = mViewModel.mLedgerList[i] as LedgerModel
+            totalCr += model.cr ?: 0
+            totalDr += model.dr ?: 0
+        }
+        balance = totalDr.minus(totalCr)
+
+        mBinding.layoutFooter.tvCr.text = "Rs$totalCr"
+        mBinding.layoutFooter.tvDr.text = "Rs$totalDr"
+        mBinding.layoutFooter.tvBalanceValue.text = "Rs$balance/-"
     }
 
 }

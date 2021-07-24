@@ -7,7 +7,7 @@ object Constants {
     const val COLLECTION_USERS: String = "Users"
     const val RC_SIGN_IN: Int = 100
 
-    const val REQUEST_DELAY: Long = 650 * 3 * 1  // in milliSeconds
+    const val REQUEST_DELAY: Long = 500  // in milliSeconds
 
     const val NODE_PRODUCTS = "Products"
     const val NODE_PRODUCT_ID = "productId"
@@ -17,6 +17,13 @@ object Constants {
     const val NODE_PRODUCT_QUANTITY = "productQuantity"
     const val NODE_PRODUCT_DETAIL = "productDetail"
     const val NODE_USER_ID = "userUId"
+
+    const val NODE_LEDGER = "Ledger"
+    const val NODE_INVOICE = "Invoice"
+    const val NODE_TIME = "time"
+    const val NODE_DATE = "date"
+
+    const val COUNT_10: Int = 10
 
 
 }

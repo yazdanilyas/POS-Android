@@ -2,6 +2,7 @@ package com.cybereast.p003spos_android.models
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.cybereast.p003spos_android.helper.Converter.getDate
 
 object BindingAdapter {
 
@@ -31,6 +32,14 @@ object BindingAdapter {
             textView.text = "Rs " + (items * price).toString() + "/-"
         } else
             textView.text = ""
+    }
+
+    @JvmStatic
+    @BindingAdapter("setDate")
+    fun setDate(pTextView: TextView, date: Long) {
+        pTextView.context?.let {
+            pTextView.text = getDate(date)
+        }
     }
 
 }
