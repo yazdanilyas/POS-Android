@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="@dimen/_20dp"
+    android:orientation="vertical"
+    android:padding="@dimen/_20dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvH"
+        style="@style/headingTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update_stock" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorRed"
+        android:textStyle="bold" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etProductQuantity"
+        style="@style/editTextHintStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/shape_edit_text"
+        android:hint="@string/product_quantity"
+        android:inputType="number"
+        android:paddingHorizontal="@dimen/_10dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddEditProduct"
+        style="@style/buttonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/shape_button"
+        android:text="@string/update" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
