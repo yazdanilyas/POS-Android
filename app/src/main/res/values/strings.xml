@@ -76,6 +76,7 @@
     <string name="generate_invoice">Generate Invoice</string>
     <string name="confirm_invoice">Confirm Invoice</string>
     <string name="billing_amount">Billing Amount</string>
+    <string name="billing_amount_">Billing Amount: Rs.</string>
     <string name="bill">Bill</string>
     <string name="total_rs">Rs.</string>
     <string name="_0">0</string>
@@ -83,6 +84,11 @@
     <string name="your_cart_is_empty">Your cart is empty.</string>
     <string name="noInternetTitle">No internet connection</string>
     <string name="are_you_sure_you_want_to_complete_this_process">are you sure you want to complete this process?</string>
+    <string name="no_of_items">No of Items:</string>
+    <string name="add_invoice">Add Invoice</string>
+    <string name="invoice_history">Invoice History</string>
+    <string name="Invoices">Invoices</string>
+    <string name="invoice_detail">Invoice Detail</string>
 
 
 </resources>

@@ -25,6 +25,9 @@ class ProductListFragment : RecyclerViewBaseFragment(),
 
     companion object {
         fun newInstance() = ProductListFragment()
+        fun newInstance(mBundle: Bundle?) = ProductListFragment().apply {
+            arguments = mBundle
+        }
     }
 
     private lateinit var mViewModel: ProductListViewModel

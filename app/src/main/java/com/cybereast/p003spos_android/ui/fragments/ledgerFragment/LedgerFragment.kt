@@ -40,7 +40,6 @@ class LedgerFragment : RecyclerViewBaseFragment(),
         mViewModel = ViewModelProvider(this).get(LedgerViewModel::class.java)
         setAdapter()
         readLedgerDataFromFirebase()
-
     }
 
     override fun onPrepareAdapter(): RecyclerView.Adapter<*> {
