@@ -1,4 +1,4 @@
-package com.cybereast.p003spos_android.ui.fragments.productListFragment
+package com.cybereast.p003spos_android.ui.fragments.stockListFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -15,19 +15,19 @@ import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.databinding.ProductListFragmentBinding
 import com.cybereast.p003spos_android.models.ProductModel
-import com.cybereast.p003spos_android.ui.fragments.addEditProductFragment.AddEditProductFragment
+import com.cybereast.p003spos_android.ui.fragments.updateStockFragment.UpdateStockFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.CommonKeys
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
-class ProductListFragment : RecyclerViewBaseFragment(),
+class StockListFragment : RecyclerViewBaseFragment(),
     RecyclerViewAdapter.CallBack, BaseInterface {
 
     companion object {
-        fun newInstance() = ProductListFragment()
+        fun newInstance() = StockListFragment()
     }
 
-    private lateinit var mViewModel: ProductListViewModel
+    private lateinit var mViewModel: StockListViewModel
     private lateinit var mBinding: ProductListFragmentBinding
     private lateinit var mAdapter: RecyclerViewAdapter
 
@@ -41,7 +41,7 @@ class ProductListFragment : RecyclerViewBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel = ViewModelProvider(this).get(ProductListViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(StockListViewModel::class.java)
         setAdapter()
         getProductsListFirebase()
     }
@@ -58,18 +58,14 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     override fun onViewClicked(view: View, data: Any?) {
         mViewModel.mProductModel = data as ProductModel
         when (view.id) {
-            R.id.btnDeleteProduct -> {
-                mViewModel.mProductModel?.let { productModel ->
-                    deleteProduct(productModel)
-                }
-            }
+
             R.id.btnUpdateProduct -> {
                 val bundle = Bundle().apply {
                     putSerializable(CommonKeys.KEY_DATA, mViewModel.mProductModel)
                 }
                 ActivityUtils.launchFragment(
                     requireContext(),
-                    AddEditProductFragment::class.java.name, bundle
+                    UpdateStockFragment::class.java.name, bundle
                 )
             }
         }
@@ -82,7 +78,7 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     }
 
     override fun inflateLayoutFromId(position: Int, data: Any?): Int {
-        return R.layout.item_product
+        return R.layout.item_prodcut_stock
     }
 
     override fun onNoDataFound() {
@@ -113,9 +109,11 @@ class ProductListFragment : RecyclerViewBaseFragment(),
                     return@addSnapshotListener
                 }
                 mViewModel.mProductList.clear()
-                for (doc: QueryDocumentSnapshot in snap!!) {
-                    doc.toObject(ProductModel::class.java).let {
-                        mViewModel.mProductList.add(it)
+                if (snap != null) {
+                    for (doc: QueryDocumentSnapshot in snap) {
+                        doc.toObject(ProductModel::class.java).let {
+                            mViewModel.mProductList.add(it)
+                        }
                     }
                 }
             } catch (e: Exception) {
