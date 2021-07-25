@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.cybereast.p003spos_android.databinding.FragmentStockManagmentBinding
 import com.cybereast.p003spos_android.ui.fragments.addEditProductFragment.AddEditProductFragment
 import com.cybereast.p003spos_android.ui.fragments.productListFragment.ProductListFragment
-import com.cybereast.p003spos_android.ui.fragments.underDevelopmentFragment.UnderDevelopmentFragment
+import com.cybereast.p003spos_android.ui.fragments.stockListFragment.StockListFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 
 class StockManagementFragment : Fragment() {
@@ -39,18 +39,13 @@ class StockManagementFragment : Fragment() {
                 AddEditProductFragment::class.java.name
             )
         }
-        mBinding.productListCv2.setOnClickListener {
+        mBinding.updateStockCv.setOnClickListener {
             ActivityUtils.launchFragment(
                 requireContext(),
-                UnderDevelopmentFragment::class.java.name
+                StockListFragment::class.java.name
             )
         }
-        mBinding.productListCv2.setOnClickListener {
-            ActivityUtils.launchFragment(
-                requireContext(),
-                UnderDevelopmentFragment::class.java.name
-            )
-        }
+
         mBinding.productListCv.setOnClickListener {
             ActivityUtils.launchFragment(
                 requireContext(),

@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/row1">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/productListCv2"
+            android:id="@+id/updateStockCv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100dp"
             android:layout_marginStart="@dimen/_4dp"
@@ -120,20 +120,20 @@
                 android:paddingTop="@dimen/_18dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/productListImg2"
+                    android:id="@+id/updateStockImg"
                     android:layout_width="@dimen/_35dp"
                     android:layout_height="@dimen/_35dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_notifications_black_24dp" />
+                    android:src="@drawable/ic_stock" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/productListImg2"
+                    android:layout_below="@+id/updateStockImg"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_10dp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Sample"
+                    android:text="@string/update_stock"
                     android:textColor="@color/black" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

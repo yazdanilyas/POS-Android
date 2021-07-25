@@ -83,6 +83,9 @@
     <string name="your_cart_is_empty">Your cart is empty.</string>
     <string name="noInternetTitle">No internet connection</string>
     <string name="are_you_sure_you_want_to_complete_this_process">are you sure you want to complete this process?</string>
+    <string name="update_stock">Update Stock</string>
+    <string name="update_stock">Update Stock</string>
+    <string name="update">Update</string>
 
 
 </resources>
