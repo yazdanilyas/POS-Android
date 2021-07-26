@@ -18,6 +18,7 @@ import com.cybereast.p003spos_android.models.ProductModel
 import com.cybereast.p003spos_android.ui.fragments.updateStockFragment.UpdateStockFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.CommonKeys
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class StockListFragment : RecyclerViewBaseFragment(),
@@ -42,6 +43,7 @@ class StockListFragment : RecyclerViewBaseFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(this).get(StockListViewModel::class.java)
+        setUpActionBar(mBinding.appToolbar.toolbar, getString(R.string.stock_items), true)
         setAdapter()
         getProductsListFirebase()
     }
@@ -102,26 +104,28 @@ class StockListFragment : RecyclerViewBaseFragment(),
     }
 
     private fun getProductsListFirebase() {
-        mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).addSnapshotListener { snap, e ->
-            try {
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
-                mViewModel.mProductList.clear()
-                if (snap != null) {
-                    for (doc: QueryDocumentSnapshot in snap) {
-                        doc.toObject(ProductModel::class.java).let {
-                            mViewModel.mProductList.add(it)
+        mFireStoreDbRef.collection(Constants.NODE_PRODUCTS)
+            .whereEqualTo(Constants.FIELD_USER_ID, FirebaseAuth.getInstance().uid)
+            .addSnapshotListener { snap, e ->
+                try {
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
+                    mViewModel.mProductList.clear()
+                    if (snap != null) {
+                        for (doc: QueryDocumentSnapshot in snap) {
+                            doc.toObject(ProductModel::class.java).let {
+                                mViewModel.mProductList.add(it)
+                            }
                         }
                     }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to load  products", e)
+                } finally {
+                    mAdapter.notifyDataSetChanged()
                 }
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to load  products", e)
-            } finally {
-                mAdapter.notifyDataSetChanged()
             }
-        }
     }
 
     private fun deleteProduct(model: ProductModel) {

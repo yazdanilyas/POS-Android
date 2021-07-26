@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cybereast.p003spos_android.databinding.InvoiceManagementFragmentBinding
-import com.cybereast.p003spos_android.ui.fragments.invoiceFragment.InvoiceFragment
 import com.cybereast.p003spos_android.ui.fragments.invoiceListFragment.InvoiceListFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 
@@ -35,12 +34,6 @@ class InvoiceManagementFragment : Fragment() {
     }
 
     private fun setListeners() {
-        mBinding.addInvoiceCv.setOnClickListener {
-            ActivityUtils.launchFragment(
-                requireContext(),
-                InvoiceFragment::class.java.name
-            )
-        }
         mBinding.invoiceListCv.setOnClickListener {
             ActivityUtils.launchFragment(
                 requireContext(),

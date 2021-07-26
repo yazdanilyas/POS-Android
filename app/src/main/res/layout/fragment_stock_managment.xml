@@ -10,7 +10,7 @@
         android:id="@+id/row1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="2"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -139,6 +139,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:id="@+id/sample"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100dp"

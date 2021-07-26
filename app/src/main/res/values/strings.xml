@@ -3,7 +3,7 @@
     <string name="error_password">Minimum 6 characters required</string>
     <string name="error_email">Email is invalid</string>
     <string name="error_phone">Phone is invalid</string>
-    <string name="share_app_message">Long Queue is frustrating, Let me recommend you the solution to it. Install this app and blow away the frustration:\n</string>
+    <string name="share_app_message">Let me recommend you the wonderful POS app. Install this app and share with friends:\n</string>
     <string name="no_internet">No internet connection</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -93,6 +93,7 @@
     <string name="invoice_history">Invoice History</string>
     <string name="Invoices">Invoices</string>
     <string name="invoice_detail">Invoice Detail</string>
+    <string name="stock_items">Stock Items</string>
 
 
 </resources>
