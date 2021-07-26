@@ -67,5 +67,6 @@
     <string name="update_stock">Update Stock</string>
     <string name="update_product">Update Product</string>
     <string name="update">Update</string>
+    <string name="total_amount">Total Amount</string>
 
 </resources>

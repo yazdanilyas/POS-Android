@@ -1,6 +1,8 @@
 package com.cybereast.p003spos_android.ui.fragments.updateStockFragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -69,7 +71,12 @@ class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
             mViewModel.productModel = arguments?.getSerializable(KEY_DATA) as ProductModel
             mViewModel.mode = DataMode.UPDATE.toString()
         }
+        setViews()
+    }
+
+    private fun setViews() {
         mBinding.tvProductName.text = mViewModel.productModel?.productName
+        mBinding.etProductSalePrice.setText(mViewModel.productModel?.productSalePrice.toString())
     }
 
     private fun setListeners() {
@@ -79,6 +86,26 @@ class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
                 mBinding.etProductQuantity,
             )
         }
+        mBinding.etProductQuantity.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(str: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val qty = Integer.parseInt(str.toString())
+                val salePrice = mViewModel.productModel?.productSalePrice
+                if (salePrice != null) {
+                    val totalAmount = salePrice.let { qty.times(it) }
+                    mBinding.tvProductTotalAmount.text =
+                        getString(R.string.total_amount) + totalAmount
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
     }
 
 

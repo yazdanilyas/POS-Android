@@ -21,6 +21,17 @@
         android:textColor="@color/colorRed"
         android:textStyle="bold" />
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etProductSalePrice"
+        style="@style/editTextHintStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/shape_edit_text"
+        android:enabled="false"
+        android:hint="@string/product_sale_price"
+        android:inputType="number"
+        android:paddingHorizontal="@dimen/_10dp" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etProductQuantity"
@@ -32,6 +43,14 @@
         android:hint="@string/product_quantity"
         android:inputType="number"
         android:paddingHorizontal="@dimen/_10dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvProductTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:textColor="@color/colorRed"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAddEditProduct"
