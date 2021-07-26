@@ -7,4 +7,5 @@ import com.cybereast.p003spos_android.models.ProductModel
 class UpdateStockViewModel : BaseViewModel() {
     var productModel: ProductModel? = null
     var mode: String = DataMode.ADD.toString()
+    var totalAmount: Int? = 0
 }

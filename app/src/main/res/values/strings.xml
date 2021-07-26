@@ -67,6 +67,8 @@
     <string name="update_stock">Update Stock</string>
     <string name="update_product">Update Product</string>
     <string name="update">Update</string>
-    <string name="total_amount">Total Amount</string>
+    <string name="total_amount">Total Amount: </string>
+    <string name="quantity_message">Quantity can not be zero</string>
+    <string name="quantity">Quantity</string>
 
 </resources>

@@ -8,15 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseInterface
 import com.cybereast.p003spos_android.base.BaseValidationFragment
 import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.enums.DataMode
+import com.cybereast.p003spos_android.data.enums.TransactionType
 import com.cybereast.p003spos_android.databinding.UpdateStockFragmentBinding
+import com.cybereast.p003spos_android.models.LedgerModel
 import com.cybereast.p003spos_android.models.ProductModel
 import com.cybereast.p003spos_android.utils.CommonKeys.KEY_DATA
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 
 class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
 
@@ -48,11 +53,14 @@ class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
             R.id.etProductName -> {
                 mBinding.etProductQuantity.error = getString(R.string.require_field)
             }
+            R.id.etProductSalePrice -> {
+                mBinding.etProductSalePrice.error = getString(R.string.require_field)
+            }
         }
     }
 
     override fun onValidationSuccess() {
-        updateProduct()
+        writeStockAndLedgerEntry()
     }
 
     override fun onProgress() {
@@ -83,7 +91,7 @@ class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
 
         mBinding.btnAddEditProduct.setOnClickListener {
             validateTextField(
-                mBinding.etProductQuantity,
+                mBinding.etProductQuantity, mBinding.etProductSalePrice
             )
         }
         mBinding.etProductQuantity.addTextChangedListener(object : TextWatcher {
@@ -92,12 +100,20 @@ class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
             }
 
             override fun onTextChanged(str: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val qty = Integer.parseInt(str.toString())
-                val salePrice = mViewModel.productModel?.productSalePrice
-                if (salePrice != null) {
-                    val totalAmount = salePrice.let { qty.times(it) }
-                    mBinding.tvProductTotalAmount.text =
-                        getString(R.string.total_amount) + totalAmount
+                if (str != null) {
+                    if (str.isNotEmpty()) {
+                        val qty = Integer.parseInt(str.toString())
+                        val salePrice = mViewModel.productModel?.productSalePrice
+                        if (salePrice != null) {
+                            val totalAmount = salePrice.let { qty.times(it) }
+                            mBinding.tvProductTotalAmount.text =
+                                getString(R.string.total_amount) + totalAmount
+                            mViewModel.totalAmount = totalAmount.toInt()
+                        }
+                    } else {
+                        mBinding.tvProductTotalAmount.text =
+                            getString(R.string.total_amount)
+                    }
                 }
             }
 
@@ -108,9 +124,9 @@ class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
         })
     }
 
-
-    private fun updateProduct() {
+    private fun writeStockAndLedgerEntry() {
         onProgress()
+        // stock
         val productId = mViewModel.productModel?.productId.toString()
         val userUId = mViewModel.productModel?.userUId.toString()
         val oldQty = mViewModel.productModel?.productQuantity
@@ -120,17 +136,45 @@ class UpdateStockFragment : BaseValidationFragment(), BaseInterface {
         val docData = mapOf<String, Int?>(
             "productQuantity" to newQty
         )
+        // ledger
+        val ledgerRef = mFireStoreDbRef.collection(Constants.NODE_LEDGER).document()
+        val id = ledgerRef.id
+        val date = Timestamp.now().seconds.toString().toLong()
+        val ledger = LedgerModel(
+            id,
+            date,
+            TransactionType.PURCHASE.toString(),
+            0,
+            mViewModel.totalAmount,
+            FirebaseAuth.getInstance().uid
+        )
 
-        mRef.update(docData).addOnSuccessListener {
-            Log.d(TAG, getString(R.string.doc_successfully_written))
-            requireActivity().finish()
+        if (mViewModel.totalAmount ?: 0 > 0) {
+            mFireStoreDbRef.runBatch {
+                ledgerRef.set(ledger)
+                mRef.update(docData)
+
+                    .addOnSuccessListener {
+                        Log.d(
+                            BaseValidationFragment.TAG,
+                            getString(R.string.doc_successfully_written)
+                        )
+                        onResponse()
+                        requireActivity().finish()
+                    }
+                    .addOnFailureListener {
+                        Log.w(BaseValidationFragment.TAG, getString(R.string.error_writing_doc), it)
+                        onResponse()
+                    }
+
+            }
+        } else {
             onResponse()
-            requireActivity().finish()
-        }.addOnFailureListener { e ->
-            Log.w(TAG, getString(R.string.error_writing_doc), e)
-            onResponse()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.quantity_message),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
-
-
 }

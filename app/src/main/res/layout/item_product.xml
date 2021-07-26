@@ -27,7 +27,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/_15dp">
+            android:paddingHorizontal="@dimen/_10dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvProductName"
@@ -73,13 +73,35 @@
                 app:layout_constraintStart_toStartOf="@+id/tvProductNameValue"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvProductQuantity"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10dp"
+                android:text="@string/quantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductPrice" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvProductQtyValue"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10dp"
+                android:layout_marginStart="@dimen/_10dp"
+                android:text="@{obj.productQuantity.toString()}"
+                app:layout_constraintBottom_toBottomOf="@id/tvProductQuantity"
+                app:layout_constraintStart_toEndOf="@+id/tvProductQuantity"
+                app:layout_constraintTop_toTopOf="@+id/tvProductQuantity" />
+
             <View
                 android:id="@+id/spacer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1dp"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@color/colorGrey"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductPriceValue" />
+                app:layout_constraintTop_toBottomOf="@+id/tvProductQuantity" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvProductDescription"
