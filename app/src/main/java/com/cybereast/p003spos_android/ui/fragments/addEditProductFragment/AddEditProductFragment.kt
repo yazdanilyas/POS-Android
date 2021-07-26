@@ -76,6 +76,7 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
                 addProduct()
             }
             DataMode.UPDATE.toString() -> {
+                mBinding.btnAddEditProduct.text = getString(R.string.update_product)
                 updateProduct()
             }
         }

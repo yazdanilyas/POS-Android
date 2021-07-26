@@ -15,7 +15,7 @@ import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.databinding.ProductListFragmentBinding
 import com.cybereast.p003spos_android.models.ProductModel
-import com.cybereast.p003spos_android.ui.fragments.addEditProductFragment.AddEditProductFragment
+import com.cybereast.p003spos_android.ui.fragments.updateStockFragment.UpdateStockFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.CommonKeys
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -65,7 +65,7 @@ class StockListFragment : RecyclerViewBaseFragment(),
                 }
                 ActivityUtils.launchFragment(
                     requireContext(),
-                    AddEditProductFragment::class.java.name, bundle
+                    UpdateStockFragment::class.java.name, bundle
                 )
             }
         }
