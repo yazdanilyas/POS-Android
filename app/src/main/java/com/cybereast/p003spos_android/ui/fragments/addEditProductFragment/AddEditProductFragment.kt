@@ -11,6 +11,13 @@ import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseInterface
 import com.cybereast.p003spos_android.base.BaseValidationFragment
 import com.cybereast.p003spos_android.constants.Constants
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_DETAIL
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_ID
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_NAME
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_PURCHASE_PRICE
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_QUANTITY
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_SALE_PRICE
+import com.cybereast.p003spos_android.constants.Constants.FIELD_USER_ID
 import com.cybereast.p003spos_android.data.enums.DataMode
 import com.cybereast.p003spos_android.databinding.AddEditProductFragmentBinding
 import com.cybereast.p003spos_android.models.ProductModel
@@ -100,6 +107,7 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
             mBinding.etProductSalePrice.setText(salePrice)
             mBinding.etProductQuantity.setText(quantity)
             mBinding.etProductDetail.setText(detail)
+            mBinding.btnAddEditProduct.text = resources.getString(R.string.update_product)
         }
     }
 
@@ -130,8 +138,8 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
         val productModel = ProductModel(
             mRef.id,
             mBinding.etProductName.text.toString().trim(),
-            mBinding.etProductPurchasePrice.text.toString().toDouble(),
-            mBinding.etProductSalePrice.text.toString().toDouble(),
+            mBinding.etProductPurchasePrice.text.toString().toInt(),
+            mBinding.etProductSalePrice.text.toString().toInt(),
             mBinding.etProductQuantity.text.toString().toInt(),
             mBinding.etProductDetail.text.toString().trim(),
             FirebaseAuth.getInstance().uid
@@ -148,23 +156,31 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
 
     private fun updateProduct() {
         val productId = mViewModel.productModel?.productId.toString()
+        val userUId = mViewModel.productModel?.userUId.toString()
+
+        val productName = mBinding.etProductName.text.toString()
+        val productPurchasePrice = mBinding.etProductPurchasePrice.text.toString().toDouble()
+        val productSalePrice = mBinding.etProductSalePrice.text.toString().toDouble()
+        val productQuantity = mBinding.etProductQuantity.text.toString().toInt()
+        val productDetail = mBinding.etProductDetail.text.toString()
+
         val mRef = mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).document(productId)
 
         val docData = hashMapOf(
-            getString(R.string.productName) to mBinding.etProductName.text.toString(),
-            getString(R.string.productPurchasePrice) to mBinding.etProductPurchasePrice.text.toString()
-                .toDouble(),
-            getString(R.string.productSalePrice) to mBinding.etProductSalePrice.text.toString()
-                .toDouble(),
-            getString(R.string.productQuantity) to mBinding.etProductQuantity.text.toString()
-                .toInt(),
-            getString(R.string.productDetail) to mBinding.etProductDetail.text.toString()
+            FIELD_PRODUCT_ID to productId,
+            FIELD_PRODUCT_NAME to productName,
+            FIELD_PRODUCT_PURCHASE_PRICE to productPurchasePrice,
+            FIELD_PRODUCT_SALE_PRICE to productSalePrice,
+            FIELD_PRODUCT_QUANTITY to productQuantity,
+            FIELD_PRODUCT_DETAIL to productDetail,
+            FIELD_USER_ID to userUId
         )
 
         mRef.set(docData).addOnSuccessListener {
             Log.d(TAG, getString(R.string.doc_successfully_written))
             resetFields()
             onResponse()
+            requireActivity().finish()
         }.addOnFailureListener { e ->
             Log.w(TAG, getString(R.string.error_writing_doc), e)
             onResponse()

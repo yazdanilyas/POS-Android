@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_purchases"
         android:name="com.cybereast.p003spos_android.ui.fragments.purchasesFragment.PurchaseManagementFragment"
-        android:label="@string/title_purchases"
+        android:label="@string/sale"
         tools:layout="@layout/fragment_purchases_management" />
 
     <fragment
@@ -22,14 +22,21 @@
         android:name="com.cybereast.p003spos_android.ui.fragments.dashboardFragment.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+
     <fragment
         android:id="@+id/navigation_invoice"
-        android:name="com.cybereast.p003spos_android.ui.fragments.invoiceFragment.InvoiceFragment"
+        android:name="com.cybereast.p003spos_android.ui.fragments.invoiceManagementFragment.InvoiceManagementFragment"
         android:label="@string/title_invoice"
-        tools:layout="@layout/invoice_fragment" />
+        tools:layout="@layout/invoice_management_fragment" />
+
     <fragment
         android:id="@+id/navigation_more"
         android:name="com.cybereast.p003spos_android.ui.fragments.moreFragment.MoreFragment"
         android:label="@string/title_more"
         tools:layout="@layout/more_fragment" />
+    <fragment
+        android:id="@+id/navigation_ledger"
+        android:name="com.cybereast.p003spos_android.ui.fragments.ledgerFragment.LedgerFragment"
+        android:label="Ledger"
+        tools:layout="@layout/ledger_fragment" />
 </navigation>

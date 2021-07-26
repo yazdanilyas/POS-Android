@@ -22,7 +22,7 @@ class DashboardActivity : BaseActivity() {
             setOf(
                 R.id.navigation_stock,
                 R.id.navigation_purchases,
-                R.id.navigation_dashboard,
+                R.id.navigation_ledger,
                 R.id.navigation_invoice,
                 R.id.navigation_more
             )

@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import com.cybereast.p003spos_android.R
 
-class DialogUtils {
+object DialogUtils {
     fun infoAlert(pContext: Context, pMessage: String, callBack: AlertCallBack) {
         val dialog = Dialog(pContext)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

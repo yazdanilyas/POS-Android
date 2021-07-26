@@ -22,8 +22,7 @@ class StockManagementFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        stockManagementViewModel =
-            ViewModelProvider(this).get(StockManagementViewModel::class.java)
+        stockManagementViewModel = ViewModelProvider(this).get(StockManagementViewModel::class.java)
         mBinding = FragmentStockManagmentBinding.inflate(inflater, container, false)
         return mBinding.root
     }

@@ -3,7 +3,7 @@
     <string name="error_password">Minimum 6 characters required</string>
     <string name="error_email">Email is invalid</string>
     <string name="error_phone">Phone is invalid</string>
-    <string name="share_app_message">Long Queue is frustrating, Let me recommend you the solution to it. Install this app and blow away the frustration:\n</string>
+    <string name="share_app_message">Let me recommend you the wonderful POS app. Install this app and share with friends:\n</string>
     <string name="no_internet">No internet connection</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -30,10 +30,12 @@
     <string name="product_sale_price">Product Sale Price</string>
     <string name="product_purchase_price">Purchase Price</string>
     <string name="product_quantity">Product Quantity</string>
+    <string name="quantity">Quantity</string>
     <string name="product_detail">Product Detail</string>
     <string name="product_description">Product Description</string>
     <string name="register_product">Register Product</string>
     <string name="add_product">Add Product</string>
+    <string name="update_product">Update Product</string>
     <string name="no_data_found">No data found</string>
     <string name="_new">new</string>
     <string name="doc_successfully_written">Doc successfully written</string>
@@ -42,12 +44,6 @@
     <string name="open_product_screen">open Product Screen</string>
     <string name="open_product_list_screen">Open Product List Screen</string>
     <string name="close">Close</string>
-    <string name="productName">productName</string>
-    <string name="productPurchasePrice">productPurchasePrice</string>
-    <string name="productSalePrice">productSalePrice</string>
-    <string name="productQuantity">productQuantity</string>
-    <string name="productDetail">productDetail</string>
-    <string name="description">Description</string>
     <string name="price">Price</string>
     <string name="name">Name</string>
     <string name="title_activity_dashboard">MainActivity</string>
@@ -65,10 +61,39 @@
     <string name="under_development_screen">Under development Screen</string>
     <string name="product_list">Product List</string>
     <string name="update_stock">Update Stock</string>
-    <string name="update_product">Update Product</string>
     <string name="update">Update</string>
     <string name="total_amount">Total Amount: </string>
     <string name="quantity_message">Quantity can not be zero</string>
-    <string name="quantity">Quantity</string>
+    <string name="ledger">Ledger</string>
+    <string name="date">Date</string>
+    <string name="transaction">Transaction</string>
+    <string name="dr">Dr</string>
+    <string name="cr">Cr</string>
+    <string name="date_">02/07/2021</string>
+    <string name="sale">Sale</string>
+    <string name="invoice">Invoice</string>
+    <string name="transactionType">transactionType</string>
+    <string name="purchase">Purchase</string>
+    <string name="description">Description</string>
+    <string name="balance">Balance</string>
+    <string name="generate_bill">Generate Bill</string>
+    <string name="generate_invoice">Generate Invoice</string>
+    <string name="confirm_invoice">Confirm Invoice</string>
+    <string name="billing_amount">Billing Amount</string>
+    <string name="billing_amount_">Billing Amount: Rs.</string>
+    <string name="bill">Bill</string>
+    <string name="total_rs">Rs.</string>
+    <string name="_0">0</string>
+    <string name="confirm">Confirm</string>
+    <string name="your_cart_is_empty">Your cart is empty.</string>
+    <string name="noInternetTitle">No internet connection</string>
+    <string name="are_you_sure_you_want_to_complete_this_process">are you sure you want to complete this process?</string>
+    <string name="no_of_items">No of Items:</string>
+    <string name="add_invoice">Add Invoice</string>
+    <string name="invoice_history">Invoice History</string>
+    <string name="Invoices">Invoices</string>
+    <string name="invoice_detail">Invoice Detail</string>
+    <string name="stock_items">Stock Items</string>
+
 
 </resources>

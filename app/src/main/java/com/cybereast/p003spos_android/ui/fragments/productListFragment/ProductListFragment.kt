@@ -18,6 +18,7 @@ import com.cybereast.p003spos_android.models.ProductModel
 import com.cybereast.p003spos_android.ui.fragments.addEditProductFragment.AddEditProductFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.CommonKeys
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class ProductListFragment : RecyclerViewBaseFragment(),
@@ -25,6 +26,9 @@ class ProductListFragment : RecyclerViewBaseFragment(),
 
     companion object {
         fun newInstance() = ProductListFragment()
+        fun newInstance(mBundle: Bundle?) = ProductListFragment().apply {
+            arguments = mBundle
+        }
     }
 
     private lateinit var mViewModel: ProductListViewModel
@@ -41,6 +45,7 @@ class ProductListFragment : RecyclerViewBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpActionBar(mBinding.appToolbar.toolbar, getString(R.string.product_list), true)
         mViewModel = ViewModelProvider(this).get(ProductListViewModel::class.java)
         setAdapter()
         getProductsListFirebase()
@@ -106,16 +111,20 @@ class ProductListFragment : RecyclerViewBaseFragment(),
     }
 
     private fun getProductsListFirebase() {
-        mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).addSnapshotListener { snap, e ->
-            try {
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
-                mViewModel.mProductList.clear()
-                for (doc: QueryDocumentSnapshot in snap!!) {
-                    doc.toObject(ProductModel::class.java).let {
-                        mViewModel.mProductList.add(it)
+        mFireStoreDbRef.collection(Constants.NODE_PRODUCTS)
+            .whereEqualTo(Constants.FIELD_USER_ID, FirebaseAuth.getInstance().uid)
+            .addSnapshotListener { snap, e ->
+                try {
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
+                    mViewModel.mProductList.clear()
+                    if (snap != null) {
+                        for (doc: QueryDocumentSnapshot in snap) {
+                            doc.toObject(ProductModel::class.java).let {
+                                mViewModel.mProductList.add(it)
+                        }
                     }
                 }
             } catch (e: Exception) {

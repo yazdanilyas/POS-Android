@@ -9,10 +9,10 @@
     <item
         android:id="@+id/navigation_purchases"
         android:icon="@drawable/ic_purchases"
-        android:title="@string/title_purchases" />
+        android:title="@string/sale" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_ledger"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_dashboard" />
     <item

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="click"
+            type="com.cybereast.p003spos_android.data.interfaces.AdapterOnClick" />
+
+        <variable
+            name="obj"
+            type="com.cybereast.p003spos_android.models.ProductModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/lyUpdateAndDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginHorizontal="@dimen/_10dp"
+            android:animateLayoutChanges="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lyQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_40dp"
+                android:layout_marginHorizontal="@dimen/_5dp"
+                app:cardCornerRadius="@dimen/_3dp"
+                app:cardElevation="@dimen/_3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvQuantity"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/lyUpdateCartItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/tvDecreaseQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{(view)-> click.onViewClick(view,obj)}"
+                        android:padding="@dimen/_5dp"
+                        android:src="@drawable/ic_minus_circle_blue" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProductQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10dp"
+                        android:text="@{String.valueOf(obj.selectedQuantity)}"
+                        android:textColor="@color/color_9C27B0"
+                        android:textSize="@dimen/_16sp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/tvIncreaseQuantityImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{(view)-> click.onViewClick(view,obj)}"
+                        android:padding="@dimen/_5dp"
+                        android:src="@drawable/ic_plus_circle" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <HorizontalScrollView
+            android:id="@+id/layoutProductNameValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_5dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnRemoveProduct"
+            app:layout_constraintStart_toEndOf="@+id/lyUpdateAndDelete"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvProductName"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{obj.productName}"
+                android:textStyle="bold" />
+        </HorizontalScrollView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProductPrice"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_5dp"
+            android:text="@string/price"
+            app:layout_constraintStart_toEndOf="@+id/lyUpdateAndDelete"
+            app:layout_constraintTop_toBottomOf="@+id/layoutProductNameValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProductPriceValue"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10dp"
+            android:text="@{obj.productSalePrice.toString()}"
+            android:textColor="@color/colorRed"
+            app:layout_constraintStart_toEndOf="@+id/tvProductPrice"
+            app:layout_constraintTop_toBottomOf="@+id/layoutProductNameValue" />
+
+        <View
+            android:id="@+id/spacer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="@color/colorGrey"
+            app:layout_constraintTop_toBottomOf="@+id/tvProductPriceValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnRemoveProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20dp"
+            android:background="@drawable/ic_delete"
+            android:onClick="@{(view)-> click.onViewClick(view,obj)}"
+            android:paddingHorizontal="@dimen/_10dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvTotalPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:textColor="@color/colorBlue"
+            android:textSize="@dimen/_16sp"
+            app:calculateSelectedPrice="@{obj}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutProductNameValue" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

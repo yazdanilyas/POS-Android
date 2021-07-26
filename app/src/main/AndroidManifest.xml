@@ -11,9 +11,11 @@
         android:theme="@style/Theme.P003sPOSandroid">
         <activity
             android:name=".ui.activities.dashBoardActivity.DashboardActivity"
-            android:label="@string/title_activity_dashboard" />
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.splashActivity.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,16 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.MainActivity" />
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.loginActivity.LoginActivity"
-            android:label="@string/login" />
+            android:label="@string/login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.signUpActivity.SignUpActivity"
-            android:label="@string/sign_up" />
+            android:label="@string/sign_up"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".wrapper.FrameActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
