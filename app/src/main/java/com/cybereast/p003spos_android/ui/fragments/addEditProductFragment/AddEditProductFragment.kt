@@ -11,13 +11,13 @@ import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseInterface
 import com.cybereast.p003spos_android.base.BaseValidationFragment
 import com.cybereast.p003spos_android.constants.Constants
-import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_DETAIL
-import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_ID
-import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_NAME
-import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_PURCHASE_PRICE
-import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_QUANTITY
-import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_SALE_PRICE
-import com.cybereast.p003spos_android.constants.Constants.NODE_USER_ID
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_DETAIL
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_ID
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_NAME
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_PURCHASE_PRICE
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_QUANTITY
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_SALE_PRICE
+import com.cybereast.p003spos_android.constants.Constants.FIELD_USER_ID
 import com.cybereast.p003spos_android.data.enums.DataMode
 import com.cybereast.p003spos_android.databinding.AddEditProductFragmentBinding
 import com.cybereast.p003spos_android.models.ProductModel
@@ -166,13 +166,13 @@ class AddEditProductFragment : BaseValidationFragment(), BaseInterface {
         val mRef = mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).document(productId)
 
         val docData = hashMapOf(
-            NODE_PRODUCT_ID to productId,
-            NODE_PRODUCT_NAME to productName,
-            NODE_PRODUCT_PURCHASE_PRICE to productPurchasePrice,
-            NODE_PRODUCT_SALE_PRICE to productSalePrice,
-            NODE_PRODUCT_QUANTITY to productQuantity,
-            NODE_PRODUCT_DETAIL to productDetail,
-            NODE_USER_ID to userUId
+            FIELD_PRODUCT_ID to productId,
+            FIELD_PRODUCT_NAME to productName,
+            FIELD_PRODUCT_PURCHASE_PRICE to productPurchasePrice,
+            FIELD_PRODUCT_SALE_PRICE to productSalePrice,
+            FIELD_PRODUCT_QUANTITY to productQuantity,
+            FIELD_PRODUCT_DETAIL to productDetail,
+            FIELD_USER_ID to userUId
         )
 
         mRef.set(docData).addOnSuccessListener {

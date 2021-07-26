@@ -13,7 +13,7 @@ import com.cybereast.p003spos_android.base.BaseInterface
 import com.cybereast.p003spos_android.base.BaseValidationFragment
 import com.cybereast.p003spos_android.base.RecyclerViewBaseFragment
 import com.cybereast.p003spos_android.constants.Constants
-import com.cybereast.p003spos_android.constants.Constants.NODE_PRODUCT_QUANTITY
+import com.cybereast.p003spos_android.constants.Constants.FIELD_PRODUCT_QUANTITY
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.data.enums.TransactionType
 import com.cybereast.p003spos_android.data.interfaces.ChooseProductCallBack
@@ -50,10 +50,10 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpActionBar(mBinding.appToolbar.toolbar, getString(R.string.invoice), true)
         mViewModel = ViewModelProvider(this).get(InvoiceViewModel::class.java)
         setAdapter()
         setListeners()
-        requireActivity().actionBar?.title = getString(R.string.Invoices)
     }
 
     override fun onPrepareAdapter(): RecyclerView.Adapter<*> {
@@ -231,7 +231,7 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
 
         product.productId?.let { productId ->
             mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).document(productId)
-                .update(NODE_PRODUCT_QUANTITY, updatedQuantity)
+                .update(FIELD_PRODUCT_QUANTITY, updatedQuantity)
                 .addOnSuccessListener {
                     Log.d(TAG, "DocumentSnapshot Product Quantity successfully updated!")
                 }

@@ -44,6 +44,7 @@
                 android:layout_marginVertical="@dimen/_10dp"
                 android:layout_marginStart="@dimen/_20dp"
                 android:text="@{obj.productName}"
+                android:textColor="@color/color_9C27B0"
                 app:layout_constraintStart_toEndOf="@+id/tvProductName"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductName"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -67,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10dp"
                 android:text="@{obj.productSalePrice.toString()}"
+                android:textColor="@color/colorBlue"
                 app:layout_constraintStart_toStartOf="@+id/tvProductNameValue"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
@@ -76,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_5dp"
                 android:text="@string/quantity"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvProductQuantityValue" />
@@ -85,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10dp"
-                android:layout_marginBottom="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_10dp"
                 android:text="@{String.valueOf(obj.selectedQuantity)}"
                 android:textSize="@dimen/_16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

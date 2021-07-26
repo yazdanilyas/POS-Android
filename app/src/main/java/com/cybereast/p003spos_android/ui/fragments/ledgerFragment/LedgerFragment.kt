@@ -14,6 +14,7 @@ import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.databinding.LedgerFragmentBinding
 import com.cybereast.p003spos_android.models.LedgerModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class LedgerFragment : RecyclerViewBaseFragment(),
@@ -85,7 +86,10 @@ class LedgerFragment : RecyclerViewBaseFragment(),
     }
 
     private fun readLedgerDataFromFirebase() {
-        mFireStoreDbRef.collection(Constants.NODE_LEDGER).orderBy(Constants.NODE_DATE)
+        mFireStoreDbRef
+            .collection(Constants.NODE_LEDGER)
+            .orderBy(Constants.FIELD_DATE)
+            .whereEqualTo(Constants.FIELD_USER_ID, FirebaseAuth.getInstance().uid)
             .addSnapshotListener { snap, e ->
                 try {
                     if (e != null) {

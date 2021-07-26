@@ -16,6 +16,7 @@ import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.data.interfaces.ChooseProductCallBack
 import com.cybereast.p003spos_android.databinding.ChoseProductDialogFragmentBinding
 import com.cybereast.p003spos_android.models.ProductModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class ChoseProductDialogFragment : RecyclerViewBaseDialogFragment(), RecyclerViewAdapter.CallBack,
@@ -103,26 +104,28 @@ class ChoseProductDialogFragment : RecyclerViewBaseDialogFragment(), RecyclerVie
     }
 
     private fun getProductsListFirebase() {
-        mFireStoreDbRef.collection(Constants.NODE_PRODUCTS).addSnapshotListener { snap, e ->
-            try {
-                if (e != null) {
-                    Log.w(BaseFragment.TAG, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
-                mViewModel.mProductList.clear()
-                if (snap != null) {
-                    for (doc: QueryDocumentSnapshot in snap) {
-                        doc.toObject(ProductModel::class.java).let {
-                            mViewModel.mProductList.add(it)
+        mFireStoreDbRef.collection(Constants.NODE_PRODUCTS)
+            .whereEqualTo(Constants.FIELD_USER_ID, FirebaseAuth.getInstance().uid)
+            .addSnapshotListener { snap, e ->
+                try {
+                    if (e != null) {
+                        Log.w(BaseFragment.TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
+                    mViewModel.mProductList.clear()
+                    if (snap != null) {
+                        for (doc: QueryDocumentSnapshot in snap) {
+                            doc.toObject(ProductModel::class.java).let {
+                                mViewModel.mProductList.add(it)
+                            }
                         }
                     }
+                } catch (e: Exception) {
+                    Log.e(BaseFragment.TAG, "Failed to load  products", e)
+                } finally {
+                    mAdapter.notifyDataSetChanged()
                 }
-            } catch (e: Exception) {
-                Log.e(BaseFragment.TAG, "Failed to load  products", e)
-            } finally {
-                mAdapter.notifyDataSetChanged()
             }
-        }
     }
 
     private fun setCallback(callBack: ChooseProductCallBack) {

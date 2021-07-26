@@ -65,6 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10dp"
                         android:text="@{String.valueOf(obj.selectedQuantity)}"
+                        android:textColor="@color/color_9C27B0"
                         android:textSize="@dimen/_16sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -116,6 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10dp"
             android:text="@{obj.productSalePrice.toString()}"
+            android:textColor="@color/colorRed"
             app:layout_constraintStart_toEndOf="@+id/tvProductPrice"
             app:layout_constraintTop_toBottomOf="@+id/layoutProductNameValue" />
 
