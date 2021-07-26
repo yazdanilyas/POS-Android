@@ -5,13 +5,15 @@ import java.io.Serializable
 
 class LedgerModel(
     @SerializedName("transactionId")
-    var transactionId: String? = null,
+    var transactionId: String? = "",
     @SerializedName("date")
-    var date: String? = null,
+    var date: Long? = 0,
     @SerializedName("transactionType")
-    var transactionType: String? = null,
+    var transactionType: String? = "",
     @SerializedName("dr")
-    var dr: Double? = null,
+    var dr: Int? = 0,
     @SerializedName("cr")
-    var cr: Double? = null
+    var cr: Int? = 0,
+    @SerializedName("userUId")
+    var userUId: String? = null
 ) : Serializable
