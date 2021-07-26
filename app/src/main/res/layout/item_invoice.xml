@@ -79,29 +79,24 @@
             </androidx.cardview.widget.CardView>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvProductName"
-            style="@style/textStyle"
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:id="@+id/layoutProductNameValue"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10dp"
             android:layout_marginStart="@dimen/_5dp"
-            android:text="@string/name"
-            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnRemoveProduct"
             app:layout_constraintStart_toEndOf="@+id/lyUpdateAndDelete"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvProductNameValue"
-            style="@style/textStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_10dp"
-            android:layout_marginStart="@dimen/_5dp"
-            android:text="@{obj.productName}"
-            app:layout_constraintStart_toEndOf="@+id/tvProductName"
-            app:layout_constraintTop_toBottomOf="@+id/tvProductName"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvProductName"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{obj.productName}"
+                android:textStyle="bold" />
+        </HorizontalScrollView>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvProductPrice"
@@ -112,7 +107,7 @@
             android:layout_marginStart="@dimen/_5dp"
             android:text="@string/price"
             app:layout_constraintStart_toEndOf="@+id/lyUpdateAndDelete"
-            app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutProductNameValue" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvProductPriceValue"
@@ -121,8 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10dp"
             android:text="@{obj.productSalePrice.toString()}"
-            app:layout_constraintStart_toEndOf="@+id/tvProductName"
-            app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+            app:layout_constraintStart_toEndOf="@+id/tvProductPrice"
+            app:layout_constraintTop_toBottomOf="@+id/layoutProductNameValue" />
 
         <View
             android:id="@+id/spacer"
@@ -154,6 +149,6 @@
             app:calculateSelectedPrice="@{obj}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProductNameValue" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutProductNameValue" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

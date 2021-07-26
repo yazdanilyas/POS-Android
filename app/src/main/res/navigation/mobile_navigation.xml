@@ -25,9 +25,9 @@
 
     <fragment
         android:id="@+id/navigation_invoice"
-        android:name="com.cybereast.p003spos_android.ui.fragments.invoiceFragment.InvoiceFragment"
+        android:name="com.cybereast.p003spos_android.ui.fragments.invoiceManagementFragment.InvoiceManagementFragment"
         android:label="@string/title_invoice"
-        tools:layout="@layout/invoice_fragment" />
+        tools:layout="@layout/invoice_management_fragment" />
 
     <fragment
         android:id="@+id/navigation_more"

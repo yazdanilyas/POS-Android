@@ -19,6 +19,7 @@ import com.cybereast.p003spos_android.data.enums.TransactionType
 import com.cybereast.p003spos_android.data.interfaces.ChooseProductCallBack
 import com.cybereast.p003spos_android.databinding.InvoiceFragmentBinding
 import com.cybereast.p003spos_android.helper.Helper
+import com.cybereast.p003spos_android.models.InvoiceModel
 import com.cybereast.p003spos_android.models.LedgerModel
 import com.cybereast.p003spos_android.models.ProductModel
 import com.cybereast.p003spos_android.ui.fragments.fragmentDialogs.choseProductDialogFragment.ChoseProductDialogFragment
@@ -52,6 +53,7 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
         mViewModel = ViewModelProvider(this).get(InvoiceViewModel::class.java)
         setAdapter()
         setListeners()
+        requireActivity().actionBar?.title = getString(R.string.Invoices)
     }
 
     override fun onPrepareAdapter(): RecyclerView.Adapter<*> {
@@ -69,7 +71,7 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
             when (view.id) {
                 R.id.tvDecreaseQuantity -> {
                     val selected = productModel.selectedQuantity ?: 0
-                    if (selected > 0)
+                    if (selected > 1)
                         productModel.selectedQuantity = selected.minus(1)
                 }
                 R.id.tvIncreaseQuantityImg -> {
@@ -110,12 +112,17 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
     }
 
     override fun onProductSelected(product: ProductModel) {
+        product.selectedQuantity = 1
         if (product.productQuantity ?: 0 > 0) {
-            closeChoseProductDialog()
-            mViewModel.mProductList.add(product)
-            mAdapter.notifyDataSetChanged()
+            if (!checkItemInInvoice(product.productId)) {
+                mViewModel.mProductList.add(product)
+                calculateBill()
+                mAdapter.notifyDataSetChanged()
+                closeChoseProductDialog()
+            } else
+                Toast.makeText(requireContext(), "Item Already in Cart", Toast.LENGTH_SHORT).show()
         } else
-            Toast.makeText(requireContext(), "No Product Available in Stock", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), "Out of Stock", Toast.LENGTH_SHORT)
                 .show()
     }
 
@@ -143,8 +150,7 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
                         override fun onPositiveCallBack() {
                             if (Helper.isNetworkConnectionAvailable(requireContext())) {
                                 onProgress()
-                                updateStockAndAddInvoice()
-                                writeLedgerToFirebase()
+                                writeDateToFirebase()
                             } else {
                                 Toast.makeText(
                                     context,
@@ -174,6 +180,19 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
         }
     }
 
+    private fun checkItemInInvoice(productId: String?): Boolean {
+        for (i in 0 until mViewModel.mProductList.size) {
+            val product = mViewModel.mProductList[i] as ProductModel
+            if (product.productId == productId)
+                return true
+        }
+        return false
+    }
+
+    private fun writeDateToFirebase() {
+        updateStockAndAddInvoice()
+        writeInvoiceAndInvoiceToFirebase()
+    }
 
     private fun updateStockAndAddInvoice() {
         for (i in 0 until mViewModel.mProductList.size) {
@@ -222,32 +241,47 @@ class InvoiceFragment : RecyclerViewBaseFragment(),
         }
     }
 
-    private fun writeLedgerToFirebase() {
-        val ledgerRef = mFireStoreDbRef.collection(Constants.NODE_LEDGER).document()
-        val id = ledgerRef.id
-        val date = Timestamp.now().seconds.toString().toLong()
-        val ledger = LedgerModel(
-            id,
-            date,
-            TransactionType.INVOICE.toString(),
-            mViewModel.mBillingAmount,
-            0,
-            FirebaseAuth.getInstance().uid
-        )
-        ledgerRef.set(ledger).addOnSuccessListener {
-            Log.d(BaseValidationFragment.TAG, getString(R.string.doc_successfully_written))
-            resetFields()
-            onResponse()
-        }.addOnFailureListener { e ->
-            Log.w(BaseValidationFragment.TAG, getString(R.string.error_writing_doc), e)
-            onResponse()
-        }
-    }
-
     private fun resetFields() {
         mViewModel.mBillingAmount = 0
         mBinding.tvBillValue.text = "0"
         mViewModel.mProductList.clear()
         mAdapter.notifyDataSetChanged()
+    }
+
+    private fun writeInvoiceAndInvoiceToFirebase() {
+        val ledgerRef = mFireStoreDbRef.collection(Constants.NODE_LEDGER).document()
+        val invoiceRef = mFireStoreDbRef.collection(Constants.NODE_INVOICE).document(ledgerRef.id)
+        val date = Timestamp.now().seconds.toString().toLong()
+
+        val ledger = LedgerModel(
+            ledgerRef.id,
+            date,
+            TransactionType.SALE.toString(),
+            mViewModel.mBillingAmount,
+            0,
+            FirebaseAuth.getInstance().uid
+        )
+
+        val invoice = InvoiceModel(
+            ledgerRef.id,
+            date,
+            mViewModel.mBillingAmount,
+            FirebaseAuth.getInstance().uid,
+            mViewModel.mProductList as ArrayList<ProductModel>
+        )
+
+        mFireStoreDbRef.runBatch {
+            ledgerRef.set(ledger)
+            invoiceRef.set(invoice)
+        }
+            .addOnSuccessListener {
+                Log.d(BaseValidationFragment.TAG, getString(R.string.doc_successfully_written))
+                onResponse()
+                resetFields()
+            }
+            .addOnFailureListener {
+                Log.w(BaseValidationFragment.TAG, getString(R.string.error_writing_doc), it)
+                onResponse()
+            }
     }
 }

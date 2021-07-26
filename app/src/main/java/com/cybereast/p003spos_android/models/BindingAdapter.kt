@@ -42,4 +42,12 @@ object BindingAdapter {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("setProductCount")
+    fun setProductCount(pTextView: TextView, model: InvoiceModel) {
+        pTextView.context?.let {
+            pTextView.text = model.productList?.size?.plus(1).toString()
+        }
+    }
+
 }
