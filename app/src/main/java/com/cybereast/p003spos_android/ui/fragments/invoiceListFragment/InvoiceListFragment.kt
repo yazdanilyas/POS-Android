@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cybereast.p003spos_android.R
 import com.cybereast.p003spos_android.base.BaseInterface
 import com.cybereast.p003spos_android.base.RecyclerViewBaseFragment
+import com.cybereast.p003spos_android.constants.Constants
 import com.cybereast.p003spos_android.constants.Constants.NODE_INVOICE
 import com.cybereast.p003spos_android.data.adapter.RecyclerViewAdapter
 import com.cybereast.p003spos_android.databinding.InvoiceListFragmentBinding
@@ -17,6 +18,7 @@ import com.cybereast.p003spos_android.models.InvoiceModel
 import com.cybereast.p003spos_android.ui.fragments.invoiceProductListFragment.InvoiceProductListFragment
 import com.cybereast.p003spos_android.utils.ActivityUtils
 import com.cybereast.p003spos_android.utils.CommonKeys.KEY_DATA
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class InvoiceListFragment : RecyclerViewBaseFragment(),
@@ -40,10 +42,10 @@ class InvoiceListFragment : RecyclerViewBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpActionBar(mBinding.appToolbar.toolbar, getString(R.string.invoice_history), true)
         mViewModel = ViewModelProvider(this).get(InvoiceListViewModel::class.java)
         setAdapter()
         getInvoiceProductsListFirebase()
-        requireActivity().actionBar?.title = getString(R.string.invoice_detail)
     }
 
     override fun onPrepareAdapter(): RecyclerView.Adapter<*> {
@@ -98,25 +100,27 @@ class InvoiceListFragment : RecyclerViewBaseFragment(),
     }
 
     private fun getInvoiceProductsListFirebase() {
-        mFireStoreDbRef.collection(NODE_INVOICE).addSnapshotListener { snap, e ->
-            try {
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
-                mViewModel.mInvoiceList.clear()
-                if (snap != null) {
-                    for (doc: QueryDocumentSnapshot in snap) {
-                        doc.toObject(InvoiceModel::class.java).let { invoiceModel ->
-                            mViewModel.mInvoiceList.add(invoiceModel)
+        mFireStoreDbRef.collection(NODE_INVOICE)
+            .whereEqualTo(Constants.FIELD_USER_ID, FirebaseAuth.getInstance().uid)
+            .addSnapshotListener { snap, e ->
+                try {
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
+                    mViewModel.mInvoiceList.clear()
+                    if (snap != null) {
+                        for (doc: QueryDocumentSnapshot in snap) {
+                            doc.toObject(InvoiceModel::class.java).let { invoiceModel ->
+                                mViewModel.mInvoiceList.add(invoiceModel)
+                            }
                         }
                     }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to load  products", e)
+                } finally {
+                    mAdapter.notifyDataSetChanged()
                 }
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to load  products", e)
-            } finally {
-                mAdapter.notifyDataSetChanged()
             }
-        }
     }
 }

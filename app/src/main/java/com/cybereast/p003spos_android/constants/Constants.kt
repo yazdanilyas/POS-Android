@@ -9,19 +9,19 @@ object Constants {
 
     const val REQUEST_DELAY: Long = 500  // in milliSeconds
 
-    const val NODE_PRODUCTS = "Products"
-    const val NODE_PRODUCT_ID = "productId"
-    const val NODE_PRODUCT_NAME = "productName"
-    const val NODE_PRODUCT_PURCHASE_PRICE = "productPurchasePrice"
-    const val NODE_PRODUCT_SALE_PRICE = "productSalePrice"
-    const val NODE_PRODUCT_QUANTITY = "productQuantity"
-    const val NODE_PRODUCT_DETAIL = "productDetail"
-    const val NODE_USER_ID = "userUId"
+    const val FIELD_PRODUCT_ID = "productId"
+    const val FIELD_PRODUCT_NAME = "productName"
+    const val FIELD_PRODUCT_PURCHASE_PRICE = "productPurchasePrice"
+    const val FIELD_PRODUCT_SALE_PRICE = "productSalePrice"
+    const val FIELD_PRODUCT_QUANTITY = "productQuantity"
+    const val FIELD_PRODUCT_DETAIL = "productDetail"
+    const val FIELD_USER_ID = "userUId"
+    const val FIELD_DATE = "date"
 
+    const val NODE_PRODUCTS = "Products"
     const val NODE_LEDGER = "Ledger"
     const val NODE_INVOICE = "Invoice"
-    const val NODE_TIME = "time"
-    const val NODE_DATE = "date"
+
 
     const val COUNT_10: Int = 10
 

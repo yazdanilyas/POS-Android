@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.invoiceFragment.InvoiceFragment">
 
+    <include
+        android:id="@+id/appToolbar"
+        layout="@layout/app_bar_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -14,7 +21,7 @@
         android:background="@color/white"
         android:paddingHorizontal="@dimen/_5dp"
         app:layout_constraintBottom_toTopOf="@+id/invoiceBtn"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appToolbar"
         tools:listitem="@layout/item_invoice" />
 
     <androidx.cardview.widget.CardView

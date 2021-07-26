@@ -57,7 +57,8 @@
                     style="@style/textStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{obj.productName}" />
+                    android:text="@{obj.productName}"
+                    android:textColor="@color/color_9C27B0" />
             </HorizontalScrollView>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -79,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10dp"
                 android:text="@{obj.productSalePrice.toString()}"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/layoutProductNameValue"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
@@ -103,6 +105,7 @@
                 android:layout_marginHorizontal="@dimen/_20dp"
                 android:layout_marginVertical="@dimen/_10dp"
                 android:text="@{obj.productQuantity.toString()}"
+                android:textColor="@color/colorBlue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvProductQuantity" />
 

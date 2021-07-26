@@ -37,6 +37,7 @@ class InvoiceProductListFragment : RecyclerViewBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpActionBar(mBinding.appToolbar.toolbar, getString(R.string.invoice_detail), true)
         mViewModel = ViewModelProvider(this).get(InvoiceProductListViewModel::class.java)
         setAdapter()
         loadDataFromBundle()
